@@ -58,7 +58,7 @@ export function App() {
   return (
     <div className="app-container">
       <h1>Todo App</h1>
-      <p className="subtitle">Powered by @YOUR_NPM_USERNAME/lite-orm</p>
+      <p className="subtitle">Powered by @snehanshkhanna/lite-orm</p>
       
       <TodoForm onAdd={handleAdd} />
       <FilterTabs current={filter} onChange={setFilter} />
