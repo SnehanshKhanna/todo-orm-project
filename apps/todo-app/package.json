@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit && tsc -p tsconfig.server.json --noEmit"
   },
   "dependencies": {
-    "@snehanshkhanna/lite-orm": "*",
+    "@snehanshkhanna/lite-orm": "^1.0.0",
     "express": "^4.19.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

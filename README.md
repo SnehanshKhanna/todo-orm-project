@@ -81,14 +81,20 @@ const active = await db.todo.findMany({ where: { completed: false } });
 
 ## npm Package Info
 
-The ORM is designed to be published as an npm package.
+The ORM has been successfully published to npm.
 
-**Publishing Steps:**
-1. Run `npm login` to authenticate.
-2. Replace `@YOUR_NPM_USERNAME` globally in the codebase with your actual npm username.
-3. Run `npm publish --access public` inside `packages/orm`.
+**NPM package:** `@snehanshkhanna/lite-orm`
+
+**Installation:**
+```bash
+npm install @snehanshkhanna/lite-orm
+```
+
+**Published version:** `1.0.0`
 
 ## Deployed Demo
+
+**Live Demo:** [Pending Deployment URL]
 
 **Deployment Steps (Manual):**
 1. Ensure the repo is pushed to GitHub.
