@@ -71,7 +71,7 @@ export class Repository<TColumns extends Record<string, AnyColumnBuilder>> {
     const input = { ...data } as Record<string, unknown>;
     this.validateKeys(input, true);
 
-    const { text, values } = buildInsert(this.model as any, input);
+    const { text, values } = buildInsert(this.model, input);
     const rows = await this.driver.query<InferRow<TColumns>>(text, values);
     return rows[0];
   }
@@ -84,7 +84,7 @@ export class Repository<TColumns extends Record<string, AnyColumnBuilder>> {
     if (args?.where) {
       this.validateWhere(args.where);
     }
-    const { text, values } = buildSelect(this.model as any, args);
+    const { text, values } = buildSelect(this.model, args);
     return await this.driver.query<InferRow<TColumns>>(text, values);
   }
 
@@ -94,7 +94,7 @@ export class Repository<TColumns extends Record<string, AnyColumnBuilder>> {
   }
 
   async findById(id: PrimaryKeyType<TColumns>): Promise<InferRow<TColumns> | null> {
-    const where = { [this.primaryKeyColumn]: id } as any;
+    const where = { [this.primaryKeyColumn]: id } as InferWhereInput<TColumns>;
     return await this.findFirst({ where });
   }
 
@@ -117,7 +117,7 @@ export class Repository<TColumns extends Record<string, AnyColumnBuilder>> {
     
     this.validateKeys(input, false);
 
-    const { text, values } = buildUpdate(this.model as any, this.primaryKeyColumn, id, input);
+    const { text, values } = buildUpdate(this.model, this.primaryKeyColumn, id, input);
     const rows = await this.driver.query<InferRow<TColumns>>(text, values);
 
     if (rows.length === 0) {
@@ -128,7 +128,7 @@ export class Repository<TColumns extends Record<string, AnyColumnBuilder>> {
   }
 
   async delete(id: PrimaryKeyType<TColumns>): Promise<void> {
-    const { text, values } = buildDelete(this.model as any, this.primaryKeyColumn, id);
+    const { text, values } = buildDelete(this.model, this.primaryKeyColumn, id);
     // the pg driver doesn't return row count easily from just query() unless we use pool.query directly, but we can do a RETURNING id to check
     const queryWithReturning = text + " RETURNING " + `"${this.primaryKeyColumn}"`;
     const rows = await this.driver.query(queryWithReturning, values);

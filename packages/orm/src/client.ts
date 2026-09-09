@@ -18,11 +18,11 @@ export function createClient<
     driver = new PgDriver({ connectionString: config.connectionString });
   }
 
-  const client = {} as Record<string, any>;
+  const client = {} as Record<string, unknown>;
 
   for (const [key, model] of Object.entries(config.models)) {
     client[key] = new Repository(model, driver);
   }
 
-  return client as any;
+  return client as { [K in keyof TModels]: Repository<ColumnsOf<TModels[K]>> };
 }

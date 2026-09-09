@@ -1,7 +1,7 @@
 import { ColumnBuilder, ColumnMetadata } from "./columns";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AnyColumnBuilder = ColumnBuilder<any, any>;
+
+export type AnyColumnBuilder = ColumnBuilder<unknown, ColumnMetadata<unknown>>;
 
 export interface Model<TColumns extends Record<string, AnyColumnBuilder>> {
   tableName: string;
