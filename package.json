@@ -1,0 +1,24 @@
+{
+  "name": "lightweight-typescript-orm",
+  "version": "1.0.0",
+  "description": "Lightweight TypeScript ORM + Todo App Monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w packages/orm\" \"npm run dev -w apps/todo-app\"",
+    "build": "npm run build -w packages/orm && npm run build -w apps/todo-app",
+    "test": "npm test -w packages/orm",
+    "typecheck": "npm run typecheck -w packages/orm && npm run typecheck -w apps/todo-app"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.11.0",
+    "@typescript-eslint/parser": "^7.11.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  }
+}
