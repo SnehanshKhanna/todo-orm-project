@@ -94,14 +94,15 @@ npm install @snehanshkhanna/lite-orm
 
 ## Deployed Demo
 
-**Live Demo:** [Pending Deployment URL]
+**Live Demo:** https://todo-orm-project-alpha.vercel.app
 
-**Deployment Steps (Manual):**
-1. Ensure the repo is pushed to GitHub.
-2. Create a new "Web Service" on Render.com or Railway.
-3. Set the build command to `npm run build` and the start command to `npm start -w apps/todo-app`.
-4. Provide the `DATABASE_URL` environment variable.
-5. The service will serve both the backend API and the static React bundle from a single port.
+**Deployment Architecture (Vercel):**
+The Todo app is deployed as a unified application on Vercel.
+1. The **Vercel Root Directory** is configured to `apps/todo-app`.
+2. The static Vite React frontend is automatically built and served by Vercel's edge network.
+3. The Express backend is exposed to Vercel via Serverless Functions using the `apps/todo-app/api/index.ts` entrypoint.
+4. API routing is handled by `apps/todo-app/vercel.json` which rewrites `/api/*` traffic to the Express function.
+5. The `DATABASE_URL` must be configured securely as a Vercel Environment Variable (never committed or exposed).
 
 ## Testing
 
