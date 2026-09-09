@@ -11,7 +11,7 @@
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "build:frontend": "vite build",
     "build:backend": "tsc -p tsconfig.server.json",
-    "build": "npm run build:frontend && npm run build:backend",
+    "build": "npm run build --prefix ../../packages/orm && npm run build:frontend && npm run build:backend",
     "start": "node dist/server/server.js",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.server.json --noEmit"
   },
